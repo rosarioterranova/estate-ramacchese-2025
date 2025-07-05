@@ -45,7 +45,7 @@ function App() {
       <div
         className="fixed inset-0 opacity-5 pointer-events-none"
         style={{
-          backgroundImage: `url('/ramacca-background.jpg')`,
+          backgroundImage: `url('ramacca-background.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -75,7 +75,7 @@ function App() {
                   Estate Ramacchese 2025 • Comune di Ramacca
                 </p>
                 <p className="text-sm text-pink-100 mt-1">
-                  Aggiornato in tempo reale • Dal 27 Giugno al 27 Settembre
+                  Aggiornato in tempo reale • Dal 27 Giugno al 19 Ottobre
                 </p>
               </div>
             </div>
