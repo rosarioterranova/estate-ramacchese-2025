@@ -1,26 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import Header from "./components/Header";
-import Stats from "./components/Stats";
 import QuickNavigation from "./components/QuickNavigation";
 import Timeline from "./components/Timeline";
-import InstallPrompt from "./components/InstallPrompt";
 import { processEvents } from "./utils/dateUtils";
 import { EventWithDateTime } from "./types/Event";
 import eventsData from "./data/events.json";
 
 function App() {
-  const [events, setEvents] = useState<EventWithDateTime[]>([]);
+  const [events, setEvents] = useState<EventWithDateTime[]>(
+    processEvents(eventsData)
+  );
   const activeEventRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const processedEvents = processEvents(eventsData);
-    setEvents(processedEvents);
-
     // Update events every minute to keep the timeline current
     const interval = setInterval(() => {
       const updatedEvents = processEvents(eventsData);
       setEvents(updatedEvents);
-    }, 60000);
+    }, 1000 * 60); // 1 minute
 
     return () => clearInterval(interval);
   }, []);
@@ -31,7 +28,7 @@ function App() {
       const rect = element.getBoundingClientRect();
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
-      // Offset in pixels (e.g., 60px)
+      // Offset in pixels (e.g., 350px)
       const offset = 350;
       window.scrollTo({
         top: rect.top + scrollTop - offset,
@@ -60,7 +57,6 @@ function App() {
 
       <div className="relative z-10">
         <Header />
-        <Stats events={events} />
         <QuickNavigation
           events={events}
           onScrollToActive={scrollToActiveEvent}
@@ -69,7 +65,6 @@ function App() {
           events={events}
           onScrollToActiveRef={handleScrollToActiveRef}
         />
-        <InstallPrompt />
 
         {/* Footer */}
         <footer className="bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 text-white py-8 mt-12">

@@ -26,9 +26,23 @@ export const processEvents = (events: Event[]): EventWithDateTime[] => {
     const isToday = dateTime.toDateString() === now.toDateString();
     const isFuture = isToday ? false : dateTime > now;
 
-    // An event is "active" if it's happening now (within 2 hours window)
-    const timeDiff = Math.abs(now.getTime() - dateTime.getTime());
-    const isActive = timeDiff <= 2 * 60 * 60 * 1000 && !isPast;
+    // An event is "active" from its start time until its end time (if specified), otherwise for 1 hour
+    let endDateTime = new Date(dateTime.getTime());
+    // Try to parse end time if present (e.g., "21:00 - 23:00")
+    if (event.time && event.time.includes("-")) {
+      const parts = event.time.split("-");
+      if (parts[1]) {
+        const endTimeStr = parts[1].trim();
+        if (endTimeStr.includes(":")) {
+          const [endHour, endMinute] = endTimeStr.split(":").map(Number);
+          endDateTime.setHours(endHour, endMinute || 0, 0, 0);
+        }
+      }
+    } else {
+      // Default: 1 hour duration
+      endDateTime = new Date(dateTime.getTime() + 60 * 60 * 1000);
+    }
+    const isActive = now.getTime() >= dateTime.getTime() && now.getTime() < endDateTime.getTime();
 
     return {
       ...event,

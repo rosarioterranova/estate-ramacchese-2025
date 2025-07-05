@@ -19,7 +19,6 @@ import { formatDate, formatTime, getEventIcon } from "../utils/dateUtils";
 
 interface EventCardProps {
   event: EventWithDateTime;
-  isLast: boolean;
 }
 
 const iconMap = {
@@ -37,7 +36,7 @@ const iconMap = {
   "ferris-wheel": FerrisWheel,
 };
 
-const EventCard: React.FC<EventCardProps> = ({ event, isLast }) => {
+const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const IconComponent =
     iconMap[getEventIcon(event.name) as keyof typeof iconMap] || Calendar;
 
@@ -138,7 +137,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, isLast }) => {
             {event.isPast && (
               <div className="mt-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                  ✅ Completato
+                  ✅ Finito
                 </span>
               </div>
             )}

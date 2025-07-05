@@ -16,10 +16,6 @@ const Header: React.FC = () => {
 
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="flex items-center justify-center mb-4">
-          {/* Logo placeholder - using Calendar icon as reference */}
-          <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-4 backdrop-blur-sm">
-            <Calendar className="w-8 h-8 text-white" />
-          </div>
           <div className="text-center">
             <div className="text-sm font-medium text-pink-100 mb-1">
               COMUNE DI RAMACCA
