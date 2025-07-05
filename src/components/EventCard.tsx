@@ -43,41 +43,9 @@ const EventCard: React.FC<EventCardProps> = ({ event, isLast }) => {
 
   return (
     <div className="relative flex items-start group">
-      {/* Timeline line */}
-      {!isLast && (
-        <div
-          className={`absolute left-6 top-12 w-0.5 h-full transition-colors duration-300 ${
-            event.isPast
-              ? "bg-gradient-to-b from-green-400 to-green-300"
-              : "bg-gradient-to-b from-gray-200 to-gray-100"
-          }`}
-        />
-      )}
-
-      {/* Timeline dot */}
-      <div
-        className={`relative z-10 flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center border-4 transition-all duration-300 ${
-          event.isActive
-            ? "bg-gradient-to-br from-pink-500 to-purple-600 border-pink-200 shadow-lg shadow-pink-300 animate-pulse"
-            : event.isPast
-            ? "bg-gradient-to-br from-green-500 to-emerald-600 border-green-200"
-            : event.isToday
-            ? "bg-gradient-to-br from-blue-500 to-indigo-600 border-blue-200 shadow-lg shadow-blue-200"
-            : "bg-white border-gray-300 shadow-sm"
-        }`}
-      >
-        <IconComponent
-          className={`w-5 h-5 ${
-            event.isActive || event.isPast || event.isToday
-              ? "text-white"
-              : "text-gray-600"
-          }`}
-        />
-      </div>
-
       {/* Event card */}
       <div
-        className={`ml-6 mb-8 flex-1 transition-all duration-300 ${
+        className={`mx-6 mb-8 flex-1 transition-all duration-300 ${
           event.isActive ? "transform scale-105" : ""
         }`}
       >
@@ -150,29 +118,47 @@ const EventCard: React.FC<EventCardProps> = ({ event, isLast }) => {
           )}
 
           {/* Status badges */}
-          {event.isActive && (
-            <div className="mt-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md animate-pulse">
-                🔴 IN CORSO ORA
-              </span>
-            </div>
-          )}
+          <div className="flex justify-between items-center">
+            {event.isActive && (
+              <div className="mt-4">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-md animate-pulse">
+                  🔴 IN CORSO ORA
+                </span>
+              </div>
+            )}
 
-          {event.isToday && !event.isActive && !event.isPast && (
-            <div className="mt-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md">
-                📅 OGGI
-              </span>
-            </div>
-          )}
+            {event.isToday && !event.isActive && !event.isPast && (
+              <div className="mt-4">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-md">
+                  📅 OGGI
+                </span>
+              </div>
+            )}
 
-          {event.isPast && (
-            <div className="mt-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                ✅ Completato
-              </span>
-            </div>
-          )}
+            {event.isPast && (
+              <div className="mt-4">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                  ✅ Completato
+                </span>
+              </div>
+            )}
+            {event.isFuture && (
+              <div className="mt-4">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                  ⏳ Prossimamente
+                </span>
+              </div>
+            )}
+            <IconComponent
+              className={`w-10 h-10 ${
+                event.isActive
+                  ? "text-pink-700"
+                  : event.isToday
+                  ? "text-blue-700"
+                  : "text-gray-600"
+              }`}
+            />
+          </div>
         </div>
       </div>
     </div>

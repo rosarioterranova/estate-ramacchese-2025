@@ -10,4 +10,5 @@ export interface EventWithDateTime extends Event {
   isPast: boolean;
   isToday: boolean;
   isActive: boolean;
+  isFuture: boolean;
 }

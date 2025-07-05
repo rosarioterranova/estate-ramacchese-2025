@@ -24,6 +24,7 @@ export const processEvents = (events: Event[]): EventWithDateTime[] => {
     const dateTime = parseEventDateTime(event);
     const isPast = dateTime < now;
     const isToday = dateTime.toDateString() === now.toDateString();
+    const isFuture = isToday ? false : dateTime > now;
 
     // An event is "active" if it's happening now (within 2 hours window)
     const timeDiff = Math.abs(now.getTime() - dateTime.getTime());
@@ -35,6 +36,7 @@ export const processEvents = (events: Event[]): EventWithDateTime[] => {
       isPast,
       isToday,
       isActive,
+      isFuture,
     };
   });
 };
