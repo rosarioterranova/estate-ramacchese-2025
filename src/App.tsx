@@ -80,13 +80,13 @@ function App() {
               </div>
             </div>
             <div className="text-xs text-pink-200">
-              App realizzata da{" "}
+              App realizzata dalla redazione di{" "}
               <a
-                href="https://www.linkedin.com/in/rosarioterranova/"
+                href="https://www.ramaccanews.it/"
                 target="_blank"
                 className="text-blue-100 hover:text-white transition-colors underline"
               >
-                Rosario Terranova
+                Ramacca News
               </a>
             </div>
           </div>
