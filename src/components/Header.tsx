@@ -36,7 +36,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-center text-pink-100 mb-4">
           <MapPin className="w-4 h-4 mr-2" />
           <p className="text-sm md:text-base">
-            Dal 27 Giugno al 27 Settembre • Ramacca
+            Dal 27 Giugno al 19 Ottobre • Ramacca
           </p>
         </div>
 

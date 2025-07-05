@@ -32,7 +32,7 @@ function App() {
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
       // Offset in pixels (e.g., 60px)
-      const offset = 300;
+      const offset = 350;
       window.scrollTo({
         top: rect.top + scrollTop - offset,
         behavior: "smooth",

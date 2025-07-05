@@ -45,7 +45,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, isLast }) => {
     <div className="relative flex items-start group">
       {/* Event card */}
       <div
-        className={`mx-6 mb-8 flex-1 transition-all duration-300 ${
+        className={`mx-1 mb-8 flex-1 transition-all duration-300 ${
           event.isActive ? "transform scale-105" : ""
         }`}
       >
