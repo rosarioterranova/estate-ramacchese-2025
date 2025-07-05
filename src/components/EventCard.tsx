@@ -134,7 +134,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
               </div>
             )}
 
-            {event.isPast && (
+            {event.isPast && !event.isActive && (
               <div className="mt-4">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                   ✅ Finito
