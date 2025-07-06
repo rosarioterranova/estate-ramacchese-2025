@@ -24,15 +24,10 @@ function App() {
 
   const scrollToActiveEvent = () => {
     if (activeEventRef.current) {
-      const element = activeEventRef.current;
-      const rect = element.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      // Offset in pixels (e.g., 350px)
-      const offset = 350;
-      window.scrollTo({
-        top: rect.top + scrollTop - offset,
+      activeEventRef.current.scrollIntoView({
         behavior: "smooth",
+        block: "center",
+        inline: "nearest",
       });
     }
   };
